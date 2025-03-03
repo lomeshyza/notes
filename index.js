@@ -2,11 +2,7 @@ const inputEl = document.getElementById("title");
 const createBtn = document.getElementById("create");
 const listEl = document.getElementById("list");
 
-const notes = [
-  { title: "note1", completed: false },
-  { title: "note2", completed: false },
-  { title: "note3", completed: true },
-];
+const notes = [];
 
 function render() {
   listEl.innerHTML = "";
@@ -21,15 +17,23 @@ function render() {
 render(notes);
 
 createBtn.onclick = function () {
-  const newNote = {
-    title: inputEl.value,
-    completed: false,
-  };
-  notes.push(newNote);
-  render();
-
-  inputEl.value = "";
+    if(inputEl.value){
+        const newNote = {
+            title: inputEl.value,
+            completed: false,
+          };
+          notes.push(newNote);
+          render();
+          inputEl.value = "";
+    }
 };
+
+inputEl.onkeypress = function(e) {
+    if (e.code === 'Enter') {
+      createBtn.click();
+    }
+  };
+
 listEl.onclick = function (evt) {
   if (evt.target.dataset.index) {
     const index = parseInt(evt.target.dataset.index);
