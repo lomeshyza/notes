@@ -1,0 +1,5 @@
+li span {
+    display: block;
+    max-width: 80%;
+    overflow-wrap: break-word;
+  }
